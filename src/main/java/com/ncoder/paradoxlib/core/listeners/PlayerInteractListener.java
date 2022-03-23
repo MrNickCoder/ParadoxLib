@@ -3,6 +3,8 @@ package com.ncoder.paradoxlib.core.listeners;
 import com.ncoder.paradoxlib.enums.ToolType;
 import com.ncoder.paradoxlib.enums.WoodType;
 import com.ncoder.paradoxlib.events.PlayerStrippedLogEvent;
+import me.mrCookieSlime.Slimefun.api.BlockStorage;
+
 import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -17,6 +19,8 @@ public class PlayerInteractListener implements Listener {
         if (e.getAction() != Action.RIGHT_CLICK_BLOCK) return;
         if (ToolType.matchType(e.getItem()) != ToolType.AXE) return;
         if (WoodType.matchType(e.getClickedBlock().getType()) == null) return;
+        if (BlockStorage.check(e.getClickedBlock()) != null) return;
+
         PlayerStrippedLogEvent playerStrippedLogEvent = new PlayerStrippedLogEvent(e.getPlayer(), e.getClickedBlock(), WoodType.matchType(e.getClickedBlock().getType()));
         Bukkit.getServer().getPluginManager().callEvent(playerStrippedLogEvent);
         if (playerStrippedLogEvent.isCancelled()) e.setCancelled(true);
