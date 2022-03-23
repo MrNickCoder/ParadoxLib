@@ -15,12 +15,14 @@ public class PlayerBreakWoodEvent extends PlayerEvent implements Cancellable {
     private final ItemStack tool;
     private final Block block;
     private int expToDrop;
+    private final boolean natural;
 
-    public PlayerBreakWoodEvent(final Player player, final ItemStack tool, final Block block, final int expToDrop) {
+    public PlayerBreakWoodEvent(final Player player, final ItemStack tool, final Block block, final int expToDrop, final boolean natural) {
         super(player);
         this.tool = tool;
         this.block = block;
         this.expToDrop = expToDrop;
+        this.natural = natural;
     }
 
     public static HandlerList getHandlerList() { return handlers; }
@@ -39,5 +41,7 @@ public class PlayerBreakWoodEvent extends PlayerEvent implements Cancellable {
     public final void setExpToDrop(final int expToDrop) { this.expToDrop = expToDrop; }
 
     public final int getExpToDrop() { return expToDrop; }
+
+    public boolean isNatural() { return natural; }
 
 }
