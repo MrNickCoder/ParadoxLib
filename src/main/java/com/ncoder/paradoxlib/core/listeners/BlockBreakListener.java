@@ -15,13 +15,13 @@ public class BlockBreakListener implements Listener {
     public void onBlockBreak(final BlockBreakEvent e) {
         if (e.getPlayer() == null) return;
         if (validateOre(e.getBlock().getType())) {
-            PlayerBreakOreEvent playerBreakOreEvent = new PlayerBreakOreEvent(e.getPlayer(), e.getBlock(), e.getExpToDrop());
+            PlayerBreakOreEvent playerBreakOreEvent = new PlayerBreakOreEvent(e.getPlayer(), e.getPlayer().getItemInUse(), e.getBlock(), e.getExpToDrop());
             Bukkit.getServer().getPluginManager().callEvent(playerBreakOreEvent);
             if (playerBreakOreEvent.isCancelled()) e.setCancelled(true);
             e.setExpToDrop(playerBreakOreEvent.getExpToDrop());
         }
         if (validateWood(e.getBlock().getType())) {
-            PlayerBreakWoodEvent playerBreakWoodEvent = new PlayerBreakWoodEvent(e.getPlayer(), e.getBlock(), e.getExpToDrop());
+            PlayerBreakWoodEvent playerBreakWoodEvent = new PlayerBreakWoodEvent(e.getPlayer(), e.getPlayer().getItemInUse(), e.getBlock(), e.getExpToDrop());
             Bukkit.getServer().getPluginManager().callEvent(playerBreakWoodEvent);
             if (playerBreakWoodEvent.isCancelled()) e.setCancelled(true);
             e.setExpToDrop(playerBreakWoodEvent.getExpToDrop());
