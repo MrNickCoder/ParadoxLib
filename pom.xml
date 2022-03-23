@@ -111,8 +111,18 @@
         </repository>
 
         <repository>
+            <id>sonatype</id>
+            <url>https://oss.sonatype.org/content/groups/public/</url>
+        </repository>
+
+        <repository>
             <id>coreprotect-repo</id>
             <url>https://maven.playpro.com/</url>
+        </repository>
+
+        <repository>
+            <id>glaremasters repo</id>
+            <url>https://repo.glaremasters.me/repository/towny/</url>
         </repository>
     </repositories>
 
@@ -137,6 +147,20 @@
             <groupId>net.coreprotect</groupId>
             <artifactId>coreprotect</artifactId>
             <version>21.2</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.palmergames.bukkit.towny</groupId>
+            <artifactId>towny</artifactId>
+            <version>0.98.1.0</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>net.luckperms</groupId>
+            <artifactId>api</artifactId>
+            <version>5.4</version>
             <scope>provided</scope>
         </dependency>
 
