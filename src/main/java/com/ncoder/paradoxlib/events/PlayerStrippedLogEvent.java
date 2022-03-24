@@ -17,11 +17,13 @@ public class PlayerStrippedLogEvent extends PlayerEvent implements Cancellable {
 
     private final Block block;
     private final WoodType type;
+    private final boolean natural;
 
-    public PlayerStrippedLogEvent(final Player player, final Block block, final WoodType type) {
+    public PlayerStrippedLogEvent(final Player player, final Block block, final WoodType type, final boolean natural) {
         super(player);
         this.block = block;
         this.type = type;
+        this.natural = natural;
     }
 
     public static HandlerList getHandlerList() { return handlers; }
@@ -36,5 +38,7 @@ public class PlayerStrippedLogEvent extends PlayerEvent implements Cancellable {
     public final Block getBlock() { return block; }
 
     public final WoodType getType() { return type; }
+
+    public boolean isNatural() { return natural; }
 
 }
