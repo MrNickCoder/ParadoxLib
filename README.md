@@ -1,6 +1,8 @@
 # ParadoxLib
  A library for Slimefun4 Addons that adds a lot of useful events, classes, and utilities.
  
+ Inspiration taken from [InfinityLib](https://github.com/Mooy1/InfinityLib) and [ExtraUtils](https://github.com/Slimefun-Addon-Community/ExtraUtils), mostly of the code is from the InfinityLib
+ 
  [![Release](https://jitpack.io/v/MrNickCoder/ParadoxLib.svg)](https://jitpack.io/#MrNickCoder/ParadoxLib)
  
 # Packages & Features
@@ -115,7 +117,3 @@ Then change your main plugin class to extend `ParadoxAddon` and implement the co
 You will need to use `Enable()` and `Disable()` instead of `onEnable()` and `onDisable`.
 Make sure you don't call `super.onEnable/Disable`.
 Your updater and config setup is now handled, make sure to test that it's working though!
-
-
-# Credentials
-Inspired from [InfinityLib](https://github.com/Mooy1/InfinityLib) and [ExtraUtils](https://github.com/Slimefun-Addon-Community/ExtraUtils), mostly of the code is from the InfinityLib
