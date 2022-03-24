@@ -17,7 +17,7 @@ and provides utility methods such as getting a value from within a range
 and removing unused/old keys from the user's config.
 
 ## Events
-<b>ArmorEquipEvent</b>: Gets called when a player equipping armor piece
+<b>ArmorEquipEvent</b>: Gets called when a player equipping/unequipping armor piece
 
 <b>PlayerBreakOreEvent</b>: Gets called when a player break a ore
 
