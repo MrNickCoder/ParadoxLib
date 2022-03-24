@@ -28,7 +28,7 @@ and removing unused/old keys from the user's config.
 <b>PlayerStrippedLogEvent</b>: Gets called when a player stripped a log/wood
 
 ## Common
-<b>CoolDowns</b>: A utility object for keeping track of cool downs of players/uuids
+<b>Cooldowns</b>: A utility object for keeping track of cool downs of players/uuids
 
 <b>PersistentType</b>: Contains some PersistentDataTypes for
 ItemStack's, ItemStack Array's, Locations, and String Arrays.
@@ -52,6 +52,8 @@ It also adds some default commands such as an addon info, aliases, and help comm
 <b>ParadoxTickingBlock</b>: A ParadoxInventoryBlock with slimefun ticker
 
 <b>ParadoxMachineBlock</b>: A ParadoxTickingBlock which implements EnergyNetComponent and provides a process method
+
+<b>ParadoxGeneratorBlock</b>: A ParadoxTickingBlock which implements EnergyNetComponent and provides a generate method
 
 ## Utils
 <b>SkullTexture</b>: A class to get a custom skull texture even if its not in textures.minecraft.com
