@@ -1,9 +1,12 @@
 package com.ncoder.paradoxlib.core.listeners;
 
+import com.ncoder.paradoxlib.core.ParadoxAPIs;
 import com.ncoder.paradoxlib.enums.ToolType;
 import com.ncoder.paradoxlib.enums.WoodType;
 import com.ncoder.paradoxlib.events.PlayerStrippedLogEvent;
 import me.mrCookieSlime.Slimefun.api.BlockStorage;
+
+import net.coreprotect.CoreProtectAPI;
 
 import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
@@ -21,9 +24,22 @@ public class PlayerInteractListener implements Listener {
         if (WoodType.matchType(e.getClickedBlock().getType()) == null) return;
         if (BlockStorage.check(e.getClickedBlock()) != null) return;
 
-        PlayerStrippedLogEvent playerStrippedLogEvent = new PlayerStrippedLogEvent(e.getPlayer(), e.getClickedBlock(), WoodType.matchType(e.getClickedBlock().getType()));
-        Bukkit.getServer().getPluginManager().callEvent(playerStrippedLogEvent);
-        if (playerStrippedLogEvent.isCancelled()) e.setCancelled(true);
+        if (ParadoxAPIs.getCoreProtectAPI() != null) {
+            CoreProtectAPI api = ParadoxAPIs.getCoreProtectAPI();
+            if (api.blockLookup(e.getClickedBlock(), Integer.MAX_VALUE) == null) {
+                PlayerStrippedLogEvent playerStrippedLogEvent = new PlayerStrippedLogEvent(e.getPlayer(), e.getClickedBlock(), WoodType.matchType(e.getClickedBlock().getType()), true);
+                Bukkit.getServer().getPluginManager().callEvent(playerStrippedLogEvent);
+                if (playerStrippedLogEvent.isCancelled()) e.setCancelled(true);
+            } else {
+                PlayerStrippedLogEvent playerStrippedLogEvent = new PlayerStrippedLogEvent(e.getPlayer(), e.getClickedBlock(), WoodType.matchType(e.getClickedBlock().getType()), false);
+                Bukkit.getServer().getPluginManager().callEvent(playerStrippedLogEvent);
+                if (playerStrippedLogEvent.isCancelled()) e.setCancelled(true);
+            }
+        } else {
+            PlayerStrippedLogEvent playerStrippedLogEvent = new PlayerStrippedLogEvent(e.getPlayer(), e.getClickedBlock(), WoodType.matchType(e.getClickedBlock().getType()), true);
+            Bukkit.getServer().getPluginManager().callEvent(playerStrippedLogEvent);
+            if (playerStrippedLogEvent.isCancelled()) e.setCancelled(true);
+        }
     }
 
 }
