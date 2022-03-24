@@ -30,10 +30,19 @@ public abstract class ParadoxInventoryBlock extends SlimefunItem {
     public static final ItemStack PROCESSING_ITEM = new CustomItemStack(Material.LIME_STAINED_GLASS_PANE, "&aProcessing...");
     public static final ItemStack NO_ENERGY_ITEM = new CustomItemStack(Material.RED_STAINED_GLASS_PANE, "&cNot enough energy");
     public static final ItemStack IDLE_ITEM = new CustomItemStack(Material.BLACK_STAINED_GLASS_PANE, "&8Idle");
+
     public static final ItemStack GENERATING = new CustomItemStack(Material.LIME_STAINED_GLASS_PANE, "&aGenerating");
     public static final ItemStack NOT_GENERATING = new CustomItemStack(Material.ORANGE_STAINED_GLASS_PANE, "&6Not Generating");
+
     public static final ItemStack NO_ROOM_ITEM = new CustomItemStack(Material.ORANGE_STAINED_GLASS_PANE, "&6Not enough room!");
+
     public static final ItemStack NO_OUTPUT = new CustomItemStack(Material.BARRIER, " ");
+    
+    public static final ItemStack ENABLED_NEXT = new CustomItemStack(Material.LIME_STAINED_GLASS_PANE, "&a&lNext");
+    public static final ItemStack DISABLED_NEXDT = new CustomItemStack(Material.BLACK_STAINED_GLASS_PANE, "&8&l&mNext");
+    public static final ItemStack ENABLED_PREVIOUS = new CustomItemStack(Material.LIME_STAINED_GLASS_PANE, "&a&lPrevious");
+    public static final ItemStack DISABLED_PREVIOUS = new CustomItemStack(Material.BLACK_STAINED_GLASS_PANE, "&8&l&mPrevious");
+    
     public static final ItemStack OUTPUT_BORDER = new CustomItemStack(ChestMenuUtils.getOutputSlotTexture(), "&6Output");
     public static final ItemStack INPUT_BORDER = new CustomItemStack(ChestMenuUtils.getInputSlotTexture(), "&9Input");
     public static final ItemStack BACKGROUND = ChestMenuUtils.getBackground();
