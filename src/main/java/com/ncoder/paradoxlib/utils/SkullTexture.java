@@ -16,9 +16,6 @@ import java.util.Base64;
 
 public class SkullTexture {
 
-    public static SkullTexture NEXT_SKULL = new SkullTexture("8271a47104495e357c3e8e80f511a9f102b0700ca9b88e88b795d33ff20105eb");
-    public static SkullTexture PREVIOUS_SKULL = new SkullTexture("69ea1d86247f4af351ed1866bca6a3040a06c68177c78e42316a1098e60fb7d3");
-
     private final String url;
     private final String base64;
     private final String texture;
