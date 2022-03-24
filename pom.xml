@@ -6,7 +6,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.ncoder</groupId>
     <artifactId>ParadoxLib</artifactId>
-    <version>1.0.3</version>
+    <version>1.0.4</version>
 
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
@@ -106,6 +106,16 @@
         </repository>
 
         <repository>
+            <id>coreprotect-repo</id>
+            <url>https://maven.playpro.com/</url>
+        </repository>
+
+        <repository>
+            <id>glaremasters repo</id>
+            <url>https://repo.glaremasters.me/repository/towny/</url>
+        </repository>
+
+        <repository>
             <id>jitpack.io</id>
             <url>https://jitpack.io</url>
         </repository>
@@ -115,15 +125,6 @@
             <url>https://oss.sonatype.org/content/groups/public/</url>
         </repository>
 
-        <repository>
-            <id>coreprotect-repo</id>
-            <url>https://maven.playpro.com/</url>
-        </repository>
-
-        <repository>
-            <id>glaremasters repo</id>
-            <url>https://repo.glaremasters.me/repository/towny/</url>
-        </repository>
     </repositories>
 
     <dependencies>
@@ -146,7 +147,7 @@
         <dependency>
             <groupId>net.coreprotect</groupId>
             <artifactId>coreprotect</artifactId>
-            <version>21.1</version>
+            <version>21.2</version>
             <scope>provided</scope>
         </dependency>
 
