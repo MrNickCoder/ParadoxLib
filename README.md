@@ -67,7 +67,7 @@ First you need to add ParadoxLib to the `dependencies` section in your `pom.xml`
 
 ```xml
 <dependency>
-    <groupId>com.ncoder</groupId>
+    <groupId>com.github.MrNickCoder</groupId>
     <artifactId>ParadoxLib</artifactId>
     <version>SPECIFY VERSION HERE</version>
     <scope>compile</scope>
