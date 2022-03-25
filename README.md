@@ -3,7 +3,7 @@
  
  Inspiration taken from [InfinityLib](https://github.com/Mooy1/InfinityLib) and [ExtraUtils](https://github.com/Slimefun-Addon-Community/ExtraUtils), mostly of the code is from the InfinityLib
  
- [![Release](https://jitpack.io/v/MrNickCoder/ParadoxLib.svg)](https://jitpack.io/#MrNickCoder/ParadoxLib)
+ [![Release](https://jitpack.io/v/MrNickCoder/ParadoxLib.svg?style=flat-square)](https://jitpack.io/#MrNickCoder/ParadoxLib)
  
 # Packages & Features
 ## Core
