@@ -1,6 +1,7 @@
 package com.ncoder.paradoxlib.common;
 
 import com.ncoder.paradoxlib.core.ParadoxAddon;
+
 import lombok.experimental.UtilityClass;
 import org.bukkit.Bukkit;
 

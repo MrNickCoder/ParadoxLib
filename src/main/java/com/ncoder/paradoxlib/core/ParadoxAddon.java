@@ -1,10 +1,14 @@
 package com.ncoder.paradoxlib.core;
 
-import com.ncoder.paradoxlib.ParadoxLib;
 import com.ncoder.paradoxlib.commands.AddonCommand;
+import com.ncoder.paradoxlib.ParadoxLib;
 import com.ncoder.paradoxlib.common.Events;
 import com.ncoder.paradoxlib.common.Scheduler;
-import com.ncoder.paradoxlib.core.listeners.*;
+import com.ncoder.paradoxlib.core.listeners.ArmorListener;
+import com.ncoder.paradoxlib.core.listeners.BlockBreakListener;
+import com.ncoder.paradoxlib.core.listeners.DispenserArmorListener;
+import com.ncoder.paradoxlib.core.listeners.PlayerFishListener;
+import com.ncoder.paradoxlib.core.listeners.PlayerInteractListener;
 import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.updater.GitHubBuildsUpdater;

@@ -1,9 +1,9 @@
 package com.ncoder.paradoxlib.core.listeners;
 
-import com.ncoder.paradoxlib.core.ParadoxAPIs;
-import com.ncoder.paradoxlib.enums.ToolType;
 import com.ncoder.paradoxlib.enums.WoodType;
 import com.ncoder.paradoxlib.events.PlayerStrippedLogEvent;
+import com.ncoder.paradoxlib.core.ParadoxAPIs;
+import com.ncoder.paradoxlib.enums.ToolType;
 import me.mrCookieSlime.Slimefun.api.BlockStorage;
 
 import net.coreprotect.CoreProtectAPI;

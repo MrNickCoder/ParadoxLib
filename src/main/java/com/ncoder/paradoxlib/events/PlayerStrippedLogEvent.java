@@ -1,14 +1,11 @@
 package com.ncoder.paradoxlib.events;
 
 import com.ncoder.paradoxlib.enums.WoodType;
-import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.player.PlayerEvent;
-
-import java.util.Arrays;
 
 public class PlayerStrippedLogEvent extends PlayerEvent implements Cancellable {
 

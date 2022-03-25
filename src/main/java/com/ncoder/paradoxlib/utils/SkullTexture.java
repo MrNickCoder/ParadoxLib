@@ -2,7 +2,6 @@ package com.ncoder.paradoxlib.utils;
 
 import io.github.thebusybiscuit.slimefun4.libraries.dough.common.CommonPatterns;
 
-import io.github.thebusybiscuit.slimefun4.libraries.dough.skins.PlayerHead;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.skins.PlayerSkin;
 import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
 

@@ -1,6 +1,7 @@
 package com.ncoder.paradoxlib.common;
 
 import com.ncoder.paradoxlib.core.ParadoxAddon;
+
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import org.bukkit.Bukkit;

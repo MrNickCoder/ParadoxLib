@@ -1,7 +1,6 @@
 package com.ncoder.paradoxlib.enums;
 
 import org.bukkit.Material;
-import org.bukkit.inventory.ItemStack;
 
 public enum WoodType {
     OAK(Material.OAK_LOG, Material.OAK_WOOD),

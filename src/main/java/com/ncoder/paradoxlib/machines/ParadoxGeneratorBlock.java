@@ -18,9 +18,7 @@ import org.bukkit.inventory.ItemStack;
 
 import javax.annotation.Nonnull;
 
-import java.util.Objects;
-
-public abstract class ParadoxGeneratorBlock extends ParadoxInventoryBlock implements EnergyNetProvider {
+public abstract class ParadoxGeneratorBlock extends ParadoxTickingBlock implements EnergyNetProvider {
 
     public ParadoxGeneratorBlock(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
