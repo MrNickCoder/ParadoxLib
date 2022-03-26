@@ -3,6 +3,8 @@ package com.ncoder.paradoxlib.core.listeners;
 import com.ncoder.paradoxlib.enums.ArmorType;
 import com.ncoder.paradoxlib.events.ArmorEquipEvent;
 
+import com.ncoder.paradoxlib.utils.CheckerUtil;
+
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -66,7 +68,7 @@ public class ArmorListener implements Listener {
             if (newArmorType != null) {
                 boolean equipping = true;
                 if (e.getRawSlot() == newArmorType.getSlot()) equipping = false;
-                if (newArmorType.equals(ArmorType.HELMET) && (equipping ? isAirOrNull(e.getWhoClicked().getInventory().getHelmet()) : !isAirOrNull(e.getWhoClicked().getInventory().getHelmet())) || newArmorType.equals(ArmorType.CHESTPLATE) && (equipping ? isAirOrNull(e.getWhoClicked().getInventory().getChestplate()) : !isAirOrNull(e.getWhoClicked().getInventory().getChestplate())) || newArmorType.equals(ArmorType.LEGGINGS) && (equipping ? isAirOrNull(e.getWhoClicked().getInventory().getLeggings()) : !isAirOrNull(e.getWhoClicked().getInventory().getLeggings())) || newArmorType.equals(ArmorType.BOOTS) && (equipping ? isAirOrNull(e.getWhoClicked().getInventory().getBoots()) : !isAirOrNull(e.getWhoClicked().getInventory().getBoots()))) {
+                if (newArmorType.equals(ArmorType.HELMET) && (equipping ? CheckerUtil.isAirOrNull(e.getWhoClicked().getInventory().getHelmet()) : !CheckerUtil.isAirOrNull(e.getWhoClicked().getInventory().getHelmet())) || newArmorType.equals(ArmorType.CHESTPLATE) && (equipping ? CheckerUtil.isAirOrNull(e.getWhoClicked().getInventory().getChestplate()) : !CheckerUtil.isAirOrNull(e.getWhoClicked().getInventory().getChestplate())) || newArmorType.equals(ArmorType.LEGGINGS) && (equipping ? CheckerUtil.isAirOrNull(e.getWhoClicked().getInventory().getLeggings()) : !CheckerUtil.isAirOrNull(e.getWhoClicked().getInventory().getLeggings())) || newArmorType.equals(ArmorType.BOOTS) && (equipping ? CheckerUtil.isAirOrNull(e.getWhoClicked().getInventory().getBoots()) : !CheckerUtil.isAirOrNull(e.getWhoClicked().getInventory().getBoots()))) {
                     ArmorEquipEvent armorEquipEvent = new ArmorEquipEvent((Player) e.getWhoClicked(), ArmorEquipEvent.EquipMethod.SHIFT_CLICK, newArmorType, equipping ? null : e.getCurrentItem(), equipping ? e.getCurrentItem() : null);
                     Bukkit.getServer().getPluginManager().callEvent(armorEquipEvent);
                     if (armorEquipEvent.isCancelled()) e.setCancelled(true);
@@ -78,16 +80,16 @@ public class ArmorListener implements Listener {
             if (numberkey) {
                 if (e.getClickedInventory().getType().equals(InventoryType.PLAYER)) {
                     ItemStack hotbarItem = e.getClickedInventory().getItem(e.getHotbarButton());
-                    if (!isAirOrNull(hotbarItem)) {
+                    if (!CheckerUtil.isAirOrNull(hotbarItem)) {
                         newArmorType = ArmorType.matchType(hotbarItem);
                         newArmorPiece = hotbarItem;
                         oldArmorPiece = e.getClickedInventory().getItem(e.getSlot());
                     } else {
-                        newArmorType = ArmorType.matchType(!isAirOrNull(e.getCurrentItem()) ? e.getCurrentItem() : e.getCursor());
+                        newArmorType = ArmorType.matchType(!CheckerUtil.isAirOrNull(e.getCurrentItem()) ? e.getCurrentItem() : e.getCursor());
                     }
                 }
             } else {
-                if (isAirOrNull(e.getCursor()) && !isAirOrNull(e.getCurrentItem())) newArmorType = ArmorType.matchType(e.getCurrentItem());
+                if (CheckerUtil.isAirOrNull(e.getCursor()) && !CheckerUtil.isAirOrNull(e.getCurrentItem())) newArmorType = ArmorType.matchType(e.getCurrentItem());
             }
             if (newArmorType != null && e.getRawSlot() == newArmorType.getSlot()) {
                 ArmorEquipEvent.EquipMethod method = ArmorEquipEvent.EquipMethod.PICK_DROP;
@@ -121,7 +123,7 @@ public class ArmorListener implements Listener {
             }
             ArmorType newArmorType = ArmorType.matchType(e.getItem());
             if (newArmorType != null) {
-                if (newArmorType.equals(ArmorType.HELMET) && isAirOrNull(e.getPlayer().getInventory().getHelmet()) || newArmorType.equals(ArmorType.CHESTPLATE) && isAirOrNull(e.getPlayer().getInventory().getChestplate()) || newArmorType.equals(ArmorType.LEGGINGS) && isAirOrNull(e.getPlayer().getInventory().getLeggings()) || newArmorType.equals(ArmorType.BOOTS) && isAirOrNull(e.getPlayer().getInventory().getBoots())) {
+                if (newArmorType.equals(ArmorType.HELMET) && CheckerUtil.isAirOrNull(e.getPlayer().getInventory().getHelmet()) || newArmorType.equals(ArmorType.CHESTPLATE) && CheckerUtil.isAirOrNull(e.getPlayer().getInventory().getChestplate()) || newArmorType.equals(ArmorType.LEGGINGS) && CheckerUtil.isAirOrNull(e.getPlayer().getInventory().getLeggings()) || newArmorType.equals(ArmorType.BOOTS) && CheckerUtil.isAirOrNull(e.getPlayer().getInventory().getBoots())) {
                     ArmorEquipEvent armorEquipEvent = new ArmorEquipEvent(e.getPlayer(), ArmorEquipEvent.EquipMethod.HOTBAR, ArmorType.matchType(e.getItem()), null, e.getItem());
                     Bukkit.getServer().getPluginManager().callEvent(armorEquipEvent);
                     if (armorEquipEvent.isCancelled()) {
@@ -171,9 +173,8 @@ public class ArmorListener implements Listener {
         Player p = e.getEntity();
         if (e.getKeepInventory()) return;
         for (ItemStack i : p.getInventory().getArmorContents()) {
-            if (!isAirOrNull(i)) Bukkit.getServer().getPluginManager().callEvent(new ArmorEquipEvent(p, ArmorEquipEvent.EquipMethod.DEATH, ArmorType.matchType(i), i, null));
+            if (!CheckerUtil.isAirOrNull(i)) Bukkit.getServer().getPluginManager().callEvent(new ArmorEquipEvent(p, ArmorEquipEvent.EquipMethod.DEATH, ArmorType.matchType(i), i, null));
         }
     }
 
-    public static boolean isAirOrNull(ItemStack itemStack) { return itemStack == null || itemStack.getType().equals(Material.AIR); }
 }
