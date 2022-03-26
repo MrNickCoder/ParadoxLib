@@ -1,5 +1,6 @@
 package com.ncoder.paradoxlib.core;
 
+import com.ncoder.paradoxlib.utils.ConversionUtil;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.common.DoughLogger;
 
 import org.bukkit.Bukkit;
@@ -21,6 +22,7 @@ import javax.annotation.Nullable;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -193,6 +195,17 @@ public class AddonData {
                 Boolean.valueOf(this.fileConfig.getString(path + ".sharped"))
         );
     }
+    
+    @Nonnull
+    public List<Location> getLocationList(@Nonnull String path) {
+        List<Location> list = new ArrayList<>();
+        
+        for(String items : this.fileConfig.getStringList(path)) {
+            list.add(ConversionUtil.LOCATION.toLocation(items));
+        }
+        
+        return list;
+    }
 
     /**
      * Setter Methods
@@ -271,6 +284,16 @@ public class AddonData {
         this.store(path + ".sharped", String.valueOf(value.isSharped()));
     }
 
+    public void setLocationList(@Nonnull String path, List<Location> locations) {
+        List<String> list = new ArrayList<>();
+
+        for (Location items : locations) {
+            list.add(ConversionUtil.LOCATION.toString(items));
+        }
+
+        this.fileConfig.set(path, list);
+    }
+    
     /**
      * Other Methods
      */
