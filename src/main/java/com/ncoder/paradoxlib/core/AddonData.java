@@ -6,6 +6,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Chunk;
 import org.bukkit.Location;
+import org.bukkit.Note;
 import org.bukkit.Sound;
 import org.bukkit.World;
 import org.bukkit.configuration.ConfigurationSection;
@@ -152,7 +153,13 @@ public class AddonData {
 
     @Nonnull
     public Location getLocation(@Nonnull String path) {
-        return new Location(Bukkit.getWorld(this.getString(path + ".world")), this.getDouble(path + ".x"), this.getDouble(path + ".y"), this.getDouble(path + ".z"), this.getFloat(path + ".yaw"), this.getFloat(path + ".pitch"));
+        return new Location(
+                Bukkit.getWorld(this.getString(path + ".world")),
+                this.getDouble(path + ".x"),
+                this.getDouble(path + ".y"),
+                this.getDouble(path + ".z"),
+                this.getFloat(path + ".yaw"),
+                this.getFloat(path + ".pitch"));
     }
 
     @Nonnull
@@ -178,6 +185,15 @@ public class AddonData {
         return inventory;
     }
 
+    @Nonnull
+    public Note getNote(@Nonnull String path) {
+        return new Note(
+                this.fileConfig.getInt(path + ".octave"),
+                Note.Tone.valueOf(this.fileConfig.getString(path + ".tone")),
+                Boolean.valueOf(this.fileConfig.getString(path + ".sharped"))
+        );
+    }
+
     /**
      * Setter Methods
      */
@@ -193,6 +209,7 @@ public class AddonData {
         else if (value instanceof Location) { this.setLocation(path, (Location) value); }
         else if (value instanceof Chunk) { this.setChunk(path, (Chunk) value); }
         else if (value instanceof World) { this.setWorld(path, (World) value); }
+        else if (value instanceof Note) { this.setNote(path, (Note) value); }
         else { this.store(path, value); }
 
     }
@@ -246,6 +263,12 @@ public class AddonData {
 
     public void setWorld(@Nonnull String path, World value) {
         this.store(path, value.getName());
+    }
+
+    public void setNote(@Nonnull String path, Note value) {
+        this.store(path + ".octave", String.valueOf(value.getOctave()));
+        this.store(path + ".tone", value.getTone().toString());
+        this.store(path + ".sharped", String.valueOf(value.isSharped()));
     }
 
     /**
