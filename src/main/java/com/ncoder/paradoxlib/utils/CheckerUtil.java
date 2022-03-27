@@ -2,6 +2,7 @@ package com.ncoder.paradoxlib.utils;
 
 import org.bukkit.GameMode;
 import org.bukkit.Material;
+import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
@@ -16,17 +17,41 @@ public final class CheckerUtil {
 
     public static boolean isGear(ItemStack itemStack) { return isGear(itemStack.getType()); }
     public static boolean isGear(Material material) {
-        if (isArmor(material) || isWeapon(material) || isTool(material)) return true;
-        return false;
+        return isArmor(material) || isWeapon(material) || isTool(material);
     }
 
     public static boolean isArmor(ItemStack itemStack) { return isArmor(itemStack.getType()); }
-    public static boolean isArmor(Material material) { return material.toString().endsWith("_HELMET") || material.toString().endsWith("_SKULL") || material.toString().endsWith("_HEAD") || material.toString().equals("ELYTRA") || material.toString().endsWith("_CHESTPLATE") || material.toString().endsWith("_LEGGINGS") || material.toString().endsWith("_BOOTS"); }
+    public static boolean isArmor(Material material) { return material.name().endsWith("_HELMET") || material.name().endsWith("_SKULL") || material.name().endsWith("_HEAD") || material.name().equals("ELYTRA") || material.name().endsWith("_CHESTPLATE") || material.name().endsWith("_LEGGINGS") || material.name().endsWith("_BOOTS"); }
 
     public static boolean isWeapon(ItemStack itemStack) { return isWeapon(itemStack.getType()); }
-    public static boolean isWeapon(Material material) { return material.toString().endsWith("_SWORD") || material.toString().endsWith("_AXE") || material.toString().endsWith("BOW"); }
+    public static boolean isWeapon(Material material) { return material.name().endsWith("_SWORD") || material.name().endsWith("_AXE") || material.name().endsWith("BOW"); }
 
     public static boolean isTool(ItemStack itemStack) { return isTool(itemStack.getType()); }
-    public static boolean isTool(Material material) { return material.toString().endsWith("_AXE") || material.toString().endsWith("_PICKAXE") || material.toString().endsWith("_SHOVEL") || material.toString().endsWith("_HOE") || material.toString().equals("FISHING_ROD"); }
+    public static boolean isTool(Material material) { return material.name().endsWith("_AXE") || material.name().endsWith("_PICKAXE") || material.name().endsWith("_SHOVEL") || material.name().endsWith("_HOE") || material.name().equals("FISHING_ROD"); }
+
+    public static boolean isWood(ItemStack itemStack) { return isWood(itemStack.getType()); }
+    public static boolean isWood(Block block) { return isWood(block.getType()); }
+    public static boolean isWood(Material material) { return material.name().endsWith("_WOOD") || material.name().endsWith("_LOG") || material.name().endsWith("_HYPHAE") || material.name().endsWith("_STEM"); }
+
+    public static boolean isOre(ItemStack itemStack) { return isOre(itemStack.getType()); }
+    public static boolean isOre(Block block) { return isOre(block.getType()); }
+    public static boolean isOre(Material material) { return material.name().endsWith("_ORE") || material.name().equals("ANCIENT_DEBRIS"); }
+
+    public static boolean isPlant(ItemStack itemStack) { return isPlant(itemStack); }
+    public static boolean isPlant(Block block) { return isPlant(block.getType()); }
+    public static boolean isPlant(Material material) {
+        return material.name().equals("GRASS") || material.name().equals("TALL_GRASS") || material.name().equals("FERN") || material.name().equals("LARGE_FERN") || material.name().equals("SEAGRASS") || material.name().equals("TALL_SEAGRASS") ||
+                material.name().equals("CARROTS") || material.name().equals("POTATOES") || material.name().equals("WHEAT") || material.name().equals("BEETROOTS") ||
+                material.name().equals("DEAD_BUSH") || material.name().equals("SWEET_BERRY_BUSH") ||
+                material.name().equals("PUMPKIN") || material.name().equals("MELON") ||
+                material.name().equals("BAMBOO") || material.name().equals("SUGAR_CANE") ||
+                material.name().equals("CACTUS") ||
+                material.name().equals("COCOA") ||
+                material.name().equals("DANDELION") || material.name().equals("POPPY") || material.name().equals("BLUE_ORCHID") || material.name().equals("ALLIUM") ||
+                material.name().equals("AZURE_BLUET") || material.name().equals("OXEYE_DAISY") || material.name().equals("CORNFLOWER") || material.name().equals("LILY_OF_THE_VALLEY") ||
+                material.name().equals("WITHER_ROSE") || material.name().equals("SUNFLOWER") || material.name().equals("LILAC") || material.name().equals("ROSE_BUSH") ||
+                material.name().equals("PEONY") || (!material.name().startsWith("POTTED_") && material.name().endsWith("_TULIP"));
+
+    }
 
 }

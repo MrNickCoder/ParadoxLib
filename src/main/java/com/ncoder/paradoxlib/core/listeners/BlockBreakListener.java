@@ -3,6 +3,7 @@ package com.ncoder.paradoxlib.core.listeners;
 import com.ncoder.paradoxlib.core.ParadoxAPIs;
 import com.ncoder.paradoxlib.events.PlayerBreakOreEvent;
 import com.ncoder.paradoxlib.events.PlayerBreakWoodEvent;
+import com.ncoder.paradoxlib.utils.CheckerUtil;
 import me.mrCookieSlime.Slimefun.api.BlockStorage;
 
 import net.coreprotect.CoreProtectAPI;
@@ -21,7 +22,7 @@ public class BlockBreakListener implements Listener {
         if (e.getPlayer() == null) return;
         if (BlockStorage.check(e.getBlock()) != null) return;
 
-        if (validateOre(e.getBlock().getType())) {
+        if (CheckerUtil.isOre(e.getBlock())) {
             if (ParadoxAPIs.getCoreProtectAPI() != null) {
                 CoreProtectAPI api = ParadoxAPIs.getCoreProtectAPI();
                 if (api.blockLookup(e.getBlock(), Integer.MAX_VALUE) == null) {
@@ -42,7 +43,8 @@ public class BlockBreakListener implements Listener {
                 e.setExpToDrop(playerBreakOreEvent.getExpToDrop());
             }
         }
-        if (validateWood(e.getBlock().getType())) {
+
+        if (CheckerUtil.isWood(e.getBlock())) {
             if (ParadoxAPIs.getCoreProtectAPI() != null) {
                 CoreProtectAPI api = ParadoxAPIs.getCoreProtectAPI();
                 if (api.blockLookup(e.getBlock(), Integer.MAX_VALUE) == null) {
@@ -63,38 +65,10 @@ public class BlockBreakListener implements Listener {
                 e.setExpToDrop(playerBreakWoodEvent.getExpToDrop());
             }
         }
-    }
 
-    public boolean validateOre(final Material material) {
-        String name = material.name();
-        if (name.endsWith("_ORE")) return true;
-        if (name.equals("ANCIENT_DEBRIS")) return true;
-        return false;
-    }
+        if (CheckerUtil.isPlant(e.getBlock())) {
 
-    public boolean validateWood(final Material material) {
-        String name = material.name();
-        if (name.endsWith("_LOG")) return true;
-        if (name.endsWith("_WOOD")) return true;
-        if (name.endsWith("_STEM")) return true;
-        if (name.endsWith("_HYPHAE")) return true;
-        return false;
-    }
-
-    public boolean validatePlant(final Material material) {
-        String name = material.name();
-        if (name.equals("GRASS") || name.equals("TALL_GRASS") || name.equals("FERN") || name.equals("LARGE_FERN") || name.equals("SEAGRASS") || name.equals("TALL_SEAGRASS")) return true;
-        if (name.equals("CARROTS") || name.equals("POTATOES") || name.equals("WHEAT") || name.equals("BEETROOTS")) return true;
-        if (name.equals("DEAD_BUSH") || name.equals("SWEET_BERRY_BUSH")) return true;
-        if (name.equals("PUMPKIN") || name.equals("MELON")) return true;
-        if (name.equals("BAMBOO") || name.equals("SUGAR_CANE")) return true;
-        if (name.equals("CACTUS")) return true;
-        if (name.equals("COCOA")) return true;
-        if (name.equals("DANDELION") || name.equals("POPPY") || name.equals("BLUE_ORCHID") || name.equals("ALLIUM") ||
-                name.equals("AZURE_BLUET") || name.equals("OXEYE_DAISY") || name.equals("CORNFLOWER") || name.equals("LILY_OF_THE_VALLEY") ||
-                name.equals("WITHER_ROSE") || name.equals("SUNFLOWER") || name.equals("LILAC") || name.equals("ROSE_BUSH") ||
-                name.equals("PEONY") || (!name.startsWith("POTTED_") && name.endsWith("_TULIP"))) return true;
-        return false;
+        }
     }
 
 }

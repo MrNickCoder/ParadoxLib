@@ -24,7 +24,7 @@ public class ConversionUtil {
 
     public static class NUMERICAL {
 
-        public static String toRomanNumeral(int number) {
+        public static String toRoman(int number) {
             String roman = "";
             int remaining = number;
             while (remaining != 0) {

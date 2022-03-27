@@ -17,7 +17,7 @@ public class MessageUtil {
      * In-Game Personal Message
      */
     public static void sendMessage(Player player, String message) { sendMessage(ParadoxAddon.instance().getName(), player, message); }
-    public static void sendMessage(String title, Player player, String message) { player.sendMessage("§7[" + title + "§7] §f" + ChatColors.color(message)); }
+    public static void sendMessage(String title, Player player, String message) { player.sendMessage("§7[" + title + "§7] §r" + ChatColors.color(message)); }
 
     /**
      * In-Game Server Message
