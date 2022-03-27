@@ -13,6 +13,9 @@ import org.bukkit.plugin.RegisteredServiceProvider;
 
 public final class ParadoxAPIs {
 
+    /**
+     * Plugins
+     */
     public static CoreProtectAPI getCoreProtectAPI() {
         Plugin plugin = Bukkit.getPluginManager().getPlugin("CoreProtect");
         if (plugin == null || !(plugin instanceof CoreProtect)) return null;
@@ -47,4 +50,7 @@ public final class ParadoxAPIs {
         return provider.getProvider();
     }
 
+    /**
+     * Slimefun Addons
+     */
 }

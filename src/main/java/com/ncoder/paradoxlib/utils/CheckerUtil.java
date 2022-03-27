@@ -1,5 +1,6 @@
 package com.ncoder.paradoxlib.utils;
 
+import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -8,12 +9,20 @@ import org.bukkit.inventory.ItemStack;
 
 public final class CheckerUtil {
 
-    public static boolean isAirOrNull(ItemStack itemStack) { return itemStack == null || itemStack.getType().equals(Material.AIR); }
+    /**
+     * Server Version
+     */
+    public static boolean isVersion18() { return Bukkit.getVersion().contains("1.18"); }
+    public static boolean isVersion17() { return Bukkit.getVersion().contains("1.17"); }
+    public static boolean isVersion16() { return Bukkit.getVersion().contains("1.16"); }
+    public static boolean isVersion15() { return Bukkit.getVersion().contains("1.15"); }
+    public static boolean isVersion14() { return Bukkit.getVersion().contains("1.14"); }
+    public static boolean isVersion13() { return Bukkit.getVersion().contains("1.13"); }
 
-    public static boolean isCreative(Player player) { return player.getGameMode() == GameMode.CREATIVE; }
-    public static boolean isSurvival(Player player) { return player.getGameMode() == GameMode.SURVIVAL; }
-    public static boolean isAdventure(Player player) { return player.getGameMode() == GameMode.ADVENTURE; }
-    public static boolean isSpectator(Player player) { return player.getGameMode() == GameMode.SPECTATOR; }
+    /**
+     * Items
+     */
+    public static boolean isAirOrNull(ItemStack itemStack) { return itemStack == null || itemStack.getType().equals(Material.AIR); }
 
     public static boolean isGear(ItemStack itemStack) { return isGear(itemStack.getType()); }
     public static boolean isGear(Material material) {
@@ -33,6 +42,17 @@ public final class CheckerUtil {
     public static boolean isWood(Block block) { return isWood(block.getType()); }
     public static boolean isWood(Material material) { return material.name().endsWith("_WOOD") || material.name().endsWith("_LOG") || material.name().endsWith("_HYPHAE") || material.name().endsWith("_STEM"); }
 
+    /**
+     * Player
+     */
+    public static boolean isCreative(Player player) { return player.getGameMode() == GameMode.CREATIVE; }
+    public static boolean isSurvival(Player player) { return player.getGameMode() == GameMode.SURVIVAL; }
+    public static boolean isAdventure(Player player) { return player.getGameMode() == GameMode.ADVENTURE; }
+    public static boolean isSpectator(Player player) { return player.getGameMode() == GameMode.SPECTATOR; }
+
+    /**
+     * Blocks
+     */
     public static boolean isOre(ItemStack itemStack) { return isOre(itemStack.getType()); }
     public static boolean isOre(Block block) { return isOre(block.getType()); }
     public static boolean isOre(Material material) { return material.name().endsWith("_ORE") || material.name().equals("ANCIENT_DEBRIS"); }
