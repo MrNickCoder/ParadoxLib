@@ -1,4 +1,4 @@
-package com.ncoder.paradoxlib.machines;
+package com.ncoder.paradoxlib.blocks;
 
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import lombok.experimental.UtilityClass;

@@ -97,7 +97,7 @@ public final class PersistentType<T, Z> implements PersistentDataType<T, Z> {
                 }
                 catch (Exception e) {
                     e.printStackTrace();
-                    return new Location(null, 0, 0, 0);
+                    return new Location(null, 0, 0, 0, 0, 0);
                 }
             }
     );

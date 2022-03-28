@@ -1,4 +1,4 @@
-package com.ncoder.paradoxlib.machines;
+package com.ncoder.paradoxlib.blocks;
 
 import com.ncoder.paradoxlib.core.ParadoxAddon;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
@@ -27,7 +27,7 @@ public final class ParadoxRecipeType extends RecipeType {
         recipes.put(recipe, result);
     }
 
-    public void RecipesTo(BiConsumer<ItemStack[], ItemStack> callback) {
+    public void sendRecipesTo(BiConsumer<ItemStack[], ItemStack> callback) {
         recipes.forEach(callback);
         callbacks.add(callback);
     }

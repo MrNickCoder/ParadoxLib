@@ -1,4 +1,4 @@
-package com.ncoder.paradoxlib.machines;
+package com.ncoder.paradoxlib.blocks;
 
 import org.bukkit.inventory.ItemStack;
 

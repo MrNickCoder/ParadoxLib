@@ -1,4 +1,4 @@
-package com.ncoder.paradoxlib.machines;
+package com.ncoder.paradoxlib.blocks;
 
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
@@ -35,6 +35,7 @@ public abstract class ParadoxInventoryBlock extends SlimefunItem {
     public static final ItemStack GENERATING = new CustomItemStack(Material.LIME_STAINED_GLASS_PANE, "&aGenerating");
     public static final ItemStack NOT_GENERATING = new CustomItemStack(Material.ORANGE_STAINED_GLASS_PANE, "&6Not Generating");
 
+    public static final ItemStack CLICK_TO_CRAFT = new CustomItemStack(Material.LIME_STAINED_GLASS_PANE, "&aClick To Craft!");
     public static final ItemStack NO_ROOM_ITEM = new CustomItemStack(Material.ORANGE_STAINED_GLASS_PANE, "&6Not enough room!");
 
     public static final ItemStack NO_OUTPUT = new CustomItemStack(Material.BARRIER, " ");
@@ -60,9 +61,8 @@ public abstract class ParadoxInventoryBlock extends SlimefunItem {
                     @Override
                     public void onPlayerBreak(BlockBreakEvent e, ItemStack item, List<ItemStack> drops) {
                         BlockMenu menu = BlockStorage.getInventory(e.getBlock());
-                        if (menu != null) {
-                            onBreak(e, menu);
-                        }
+                        if (menu != null) onBreak(e, menu);
+                        else onBreakNonMenu(e);
                     }
                 },
                 new BlockPlaceHandler(false) {
@@ -77,7 +77,9 @@ public abstract class ParadoxInventoryBlock extends SlimefunItem {
     @Override
     public final void postRegister() { new ParadoxBlockPreset(this); }
 
-    protected abstract void setup(BlockMenuPreset preset);
+    protected abstract void onSetup(BlockMenuPreset preset);
+
+    protected void onInit() {  }
 
     @Nonnull
     protected final int[] getTransportSlots(DirtyChestMenu menu, ItemTransportFlow flow, ItemStack item) {
@@ -104,6 +106,8 @@ public abstract class ParadoxInventoryBlock extends SlimefunItem {
         menu.dropItems(l, getInputSlots());
         menu.dropItems(l, getOutputSlots());
     }
+
+    protected void onBreakNonMenu(BlockBreakEvent e) {  }
 
     protected void onPlace(BlockPlaceEvent e, Block b) {  }
 }

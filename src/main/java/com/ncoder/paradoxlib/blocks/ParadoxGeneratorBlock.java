@@ -1,4 +1,4 @@
-package com.ncoder.paradoxlib.machines;
+package com.ncoder.paradoxlib.blocks;
 
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
@@ -33,9 +33,9 @@ public abstract class ParadoxGeneratorBlock extends ParadoxTickingBlock implemen
     public int getGeneratedOutput(Location l, Config config) {
         BlockMenu menu = BlockStorage.getInventory(l);
 
-        int gen = generate(l.getWorld(), l.getBlock(), menu);
+        int gen = onGenerate(l.getWorld(), l.getBlock(), menu);
 
-        if (menu.hasViewer()) {
+        if (menu.hasViewer() && getStatusSlot() != -1) {
             if (gen == 0) {
                 menu.replaceExistingItem(getStatusSlot(), NOT_GENERATING);
             } else {
@@ -46,7 +46,7 @@ public abstract class ParadoxGeneratorBlock extends ParadoxTickingBlock implemen
         return gen;
     }
 
-    public abstract int generate(World world, Block block, BlockMenu menu);
+    public abstract int onGenerate(World world, Block block, BlockMenu menu);
 
     protected abstract int getStatusSlot();
 

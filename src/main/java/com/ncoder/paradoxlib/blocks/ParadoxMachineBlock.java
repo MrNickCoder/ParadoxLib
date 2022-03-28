@@ -1,4 +1,4 @@
-package com.ncoder.paradoxlib.machines;
+package com.ncoder.paradoxlib.blocks;
 
 import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
@@ -31,17 +31,17 @@ public abstract class ParadoxMachineBlock extends ParadoxTickingBlock implements
     }
 
     @Override
-    protected void tick(Block b, BlockMenu menu) {
+    protected void onTick(Block b, BlockMenu menu) {
         if (getCharge(menu.getLocation()) < energyPerTick) {
-            if (menu.hasViewer()) {
+            if (menu.hasViewer() && getStatusSlot() != -1) {
                 menu.replaceExistingItem(getStatusSlot(), NO_ENERGY_ITEM);
             }
-        } else if (process(b, menu)) {
+        } else if (onProcess(b, menu)) {
             removeCharge(menu.getLocation(), energyPerTick);
         }
     }
 
-    protected abstract boolean process(Block b, BlockMenu menu);
+    protected abstract boolean onProcess(Block b, BlockMenu menu);
 
     protected abstract int getStatusSlot();
 

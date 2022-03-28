@@ -20,9 +20,9 @@ final class InfoCommand extends SubCommand {
                 "",
                 ChatColors.color("&b" + addon.getName() + " Info"),
                 ChatColors.color("&bSlimefun Version: &7" + (slimefun == null ? "null" : slimefun.getPluginVersion())),
-                ChatColors.color("&bSlimefun Discord: &7Discord.gg/slimefun"),
+                ChatColors.color("&bSlimefun Discord: &7discord.gg/slimefun"),
                 ChatColors.color("&bAddon Version: &7" + addon.getPluginVersion()),
-                ChatColors.color("&bAddon Community: &7Discord.gg/SqD3gg5SAU"),
+                ChatColors.color("&bAddon Community: &7discord.gg/SqD3gg5SAU"),
                 ChatColors.color("&bGithub: &7" + addon.getBugTrackerURL()),
                 ""
         };

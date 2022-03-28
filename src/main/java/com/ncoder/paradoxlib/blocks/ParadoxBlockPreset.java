@@ -1,4 +1,4 @@
-package com.ncoder.paradoxlib.machines;
+package com.ncoder.paradoxlib.blocks;
 
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.protection.Interaction;
@@ -20,7 +20,7 @@ public class ParadoxBlockPreset extends BlockMenuPreset {
     ParadoxBlockPreset(ParadoxInventoryBlock paradoxInventoryBlock) {
         super(paradoxInventoryBlock.getId(), paradoxInventoryBlock.getItemName());
         this.paradoxInventoryBlock = paradoxInventoryBlock;
-        paradoxInventoryBlock.setup(this);
+        paradoxInventoryBlock.onSetup(this);
     }
 
     @Override
@@ -29,23 +29,15 @@ public class ParadoxBlockPreset extends BlockMenuPreset {
     }
 
     @Override
-    public int[] getSlotsAccessedByItemTransport(DirtyChestMenu menu, ItemTransportFlow flow, ItemStack item) {
-        return paradoxInventoryBlock.getTransportSlots(menu, flow, item);
-    }
+    public int[] getSlotsAccessedByItemTransport(DirtyChestMenu menu, ItemTransportFlow flow, ItemStack item) { return paradoxInventoryBlock.getTransportSlots(menu, flow, item); }
 
     @Override
-    public void init() {
-
-    }
+    public void init() { paradoxInventoryBlock.onInit(); }
 
     @Override
-    public boolean canOpen(Block b, Player p) {
-        return Slimefun.getProtectionManager().hasPermission(p, b.getLocation(), Interaction.INTERACT_BLOCK) && paradoxInventoryBlock.canUse(p, false);
-    }
+    public boolean canOpen(Block b, Player p) { return Slimefun.getProtectionManager().hasPermission(p, b.getLocation(), Interaction.INTERACT_BLOCK) && paradoxInventoryBlock.canUse(p, false); }
 
     @Override
-    public int[] getSlotsAccessedByItemTransport(ItemTransportFlow flow) {
-        return new int[0];
-    }
+    public int[] getSlotsAccessedByItemTransport(ItemTransportFlow flow) { return new int[0]; }
 
 }

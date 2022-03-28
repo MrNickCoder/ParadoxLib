@@ -1,4 +1,4 @@
-package com.ncoder.paradoxlib.machines;
+package com.ncoder.paradoxlib.blocks;
 
 import com.ncoder.paradoxlib.common.StackUtils;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.ItemUtils;
@@ -8,14 +8,14 @@ import org.bukkit.inventory.ItemStack;
 import java.util.HashMap;
 import java.util.Map;
 
-final class ParadoxBlockRecipe {
+final class ParadoxMachineBlockRecipe {
 
     private final String[] strings;
     private final int[] amounts;
     final ItemStack output;
     private Map<String, ParadoxInput> lastMatch;
 
-    ParadoxBlockRecipe(ItemStack output, ItemStack[] input) {
+    ParadoxMachineBlockRecipe(ItemStack output, ItemStack[] input) {
         this.output = output;
 
         Map<String, Integer> strings = new HashMap<>();
