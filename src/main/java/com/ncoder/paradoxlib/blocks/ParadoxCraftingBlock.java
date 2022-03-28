@@ -1,5 +1,6 @@
 package com.ncoder.paradoxlib.blocks;
 
+import com.ncoder.paradoxlib.common.Scheduler;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
@@ -33,38 +34,55 @@ public abstract class ParadoxCraftingBlock extends ParadoxInventoryBlock {
         super(itemGroup, item, recipeType, recipe, recipeOutput);
     }
 
-    protected void onCraft(Block b, BlockMenu menu, Player p) {
-        int[] slots = getRecipeSlots();
-        ItemStack[] input = new ItemStack[slots.length];
-        for (int i = 0; i < slots.length; i++) {
-            input[i] = menu.getItemInSlot(slots[i]);
-        }
+    protected Result onCheck(BlockMenu menu, Player p) { return onCheck(menu, p, null); }
 
-        ParadoxCraftingBlockRecipe recipe = getOutput(input);
+    protected Result onCheck(BlockMenu menu, Player p, @Nullable ParadoxCraftingBlockRecipe output) {
+        ParadoxCraftingBlockRecipe recipe = output != null ? output : getOutput(menu, getRecipeSlots());
 
         if (recipe != null) {
             if (recipe.check(p)) {
-                if (menu.fits(recipe.output, getOutputSlots())) {
-                    ItemStack output = recipe.output.clone();
-                    onSuccessfulCraft(menu, output);
-                    menu.pushItem(output, getOutputSlots());
-                    recipe.consume(input);
-                    p.sendMessage(ChatColor.GREEN + "Successfully Crafted: " + ItemUtils.getItemName(output));
-                } else {
-                    p.sendMessage(ChatColor.GOLD + "Not Enough Room!");
-                }
+                if (menu.fits(recipe.output, getOutputSlots())) return Result.AVAILABLE;
+                return Result.NO_ROOM;
             }
-        } else {
-            p.sendMessage(ChatColor.RED + "Invalid Recipe!");
         }
+        return Result.INVALID;
+    }
+
+    protected ItemStack onCraft(Block b, BlockMenu menu, Player p) {
+        ParadoxCraftingBlockRecipe recipe = getOutput(menu, getRecipeSlots());
+
+        ItemStack output = recipe.output.clone();
+        onSuccessfulCraft(menu, output);
+        menu.pushItem(output, getOutputSlots());
+        recipe.consume(menu, getRecipeSlots());
+        return output;
     }
 
     protected void onSuccessfulCraft(BlockMenu menu, ItemStack output) {  }
 
+    protected void onUpdate(Block b, BlockMenu menu, Result result) {  }
+
     @Override
     protected void onNewInstance(BlockMenu menu, Block b) {
+        for (int slots : getRecipeSlots()) {
+            menu.addMenuClickHandler(slots, (p, slot, item, action) -> {
+                Scheduler.run(() -> {
+                    onUpdate(b, menu, onCheck(menu, p));
+                });
+                return true;
+            });
+        }
+
         menu.addMenuClickHandler(getCraftSlot(), (p, slot, item, action) -> {
-            onCraft(b, menu, p);
+            Result result = onCheck(menu, p);
+            if (result == Result.AVAILABLE) {
+                ItemStack output = onCraft(b, menu, p);
+                p.sendMessage(ChatColor.GREEN + "Successfully Crafted: " + ItemUtils.getItemName(output));
+            } else if (result == Result.NO_ROOM) {
+                p.sendMessage(ChatColor.GOLD + "Not Enough Room!");
+            } else if (result == Result.INVALID) {
+                p.sendMessage(ChatColor.RED + "Invalid Recipe!");
+            }
             return false;
         });
     }
@@ -85,6 +103,15 @@ public abstract class ParadoxCraftingBlock extends ParadoxInventoryBlock {
     }
 
     @Nullable
+    public final ParadoxCraftingBlockRecipe getOutput(BlockMenu menu, int[] slots) {
+        ItemStack[] input = new ItemStack[slots.length];
+        for (int i = 0; i < slots.length; i++) {
+            input[i] = menu.getItemInSlot(slots[i]);
+        }
+        return getOutput(input);
+    }
+
+    @Nullable
     public final ParadoxCraftingBlockRecipe getOutput(ItemStack[] input) {
         ItemStackSnapshot[] snapshots = ItemStackSnapshot.wrapArray(input);
         for (ParadoxCraftingBlockRecipe recipe : recipes) {
@@ -96,5 +123,9 @@ public abstract class ParadoxCraftingBlock extends ParadoxInventoryBlock {
     protected abstract int[] getRecipeSlots();
 
     protected abstract int getCraftSlot();
+
+    public enum Result {
+        AVAILABLE, NO_ROOM, INVALID
+    }
 
 }

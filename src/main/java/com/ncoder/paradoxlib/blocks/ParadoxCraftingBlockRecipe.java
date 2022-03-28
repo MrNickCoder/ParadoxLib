@@ -9,6 +9,8 @@ import io.github.thebusybiscuit.slimefun4.libraries.dough.items.ItemUtils;
 
 import lombok.Getter;
 
+import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
+
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
@@ -37,6 +39,14 @@ public final class ParadoxCraftingBlockRecipe {
 
     boolean check(Player p) {
         return item == null || item.canUse(p, true);
+    }
+
+    void consume(BlockMenu menu, int[] slots) {
+        ItemStack[] input = new ItemStack[slots.length];
+        for (int i = 0; i < slots.length; i++) {
+            input[i] = menu.getItemInSlot(slots[i]);
+        }
+        consume(input);
     }
 
     void consume(ItemStack[] input) {
