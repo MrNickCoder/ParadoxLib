@@ -4,7 +4,6 @@ import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.core.attributes.EnergyNetProvider;
-import io.github.thebusybiscuit.slimefun4.core.networks.energy.EnergyNetComponentType;
 
 import me.mrCookieSlime.CSCoreLibPlugin.Configuration.Config;
 
@@ -16,7 +15,6 @@ import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.inventory.ItemStack;
 
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 public abstract class ParadoxGeneratorBlock extends ParadoxTickingBlock implements EnergyNetProvider {
@@ -49,9 +47,5 @@ public abstract class ParadoxGeneratorBlock extends ParadoxTickingBlock implemen
     public abstract int onGenerate(World world, Block block, BlockMenu menu);
 
     protected abstract int getStatusSlot();
-
-    @Nonnull
-    @Override
-    public final EnergyNetComponentType getEnergyComponentType() { return EnergyNetComponentType.GENERATOR; }
 
 }
