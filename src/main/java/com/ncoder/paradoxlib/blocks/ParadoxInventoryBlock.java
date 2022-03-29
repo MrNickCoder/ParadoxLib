@@ -79,8 +79,6 @@ public abstract class ParadoxInventoryBlock extends SlimefunItem {
 
     protected abstract void onSetup(BlockMenuPreset preset);
 
-    protected void onInit() {  }
-
     @Nonnull
     protected final int[] getTransportSlots(DirtyChestMenu menu, ItemTransportFlow flow, ItemStack item) {
         switch(flow) {

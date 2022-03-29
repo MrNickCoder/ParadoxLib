@@ -32,7 +32,7 @@ public class ParadoxBlockPreset extends BlockMenuPreset {
     public int[] getSlotsAccessedByItemTransport(DirtyChestMenu menu, ItemTransportFlow flow, ItemStack item) { return paradoxInventoryBlock.getTransportSlots(menu, flow, item); }
 
     @Override
-    public void init() { paradoxInventoryBlock.onInit(); }
+    public void init() { }
 
     @Override
     public boolean canOpen(Block b, Player p) { return Slimefun.getProtectionManager().hasPermission(p, b.getLocation(), Interaction.INTERACT_BLOCK) && paradoxInventoryBlock.canUse(p, false); }
