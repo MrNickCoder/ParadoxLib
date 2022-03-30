@@ -20,6 +20,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 public abstract class ParadoxMachineBlock extends ParadoxTickingBlock implements EnergyNetComponent {
 
     protected int energyPerTick = -1;
+
     protected int energyCapacity = -1;
 
     public ParadoxMachineBlock(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
@@ -32,12 +33,15 @@ public abstract class ParadoxMachineBlock extends ParadoxTickingBlock implements
 
     @Override
     protected void onTick(Block b, BlockMenu menu) {
-        if (getCharge(menu.getLocation()) < energyPerTick) {
-            if (menu.hasViewer() && getStatusSlot() != -1) {
-                menu.replaceExistingItem(getStatusSlot(), NO_ENERGY_ITEM);
+        if (energyPerTick != -1) {
+            if (getCharge(menu.getLocation()) < energyPerTick) {
+                if (menu.hasViewer() && getStatusSlot() != -1) {
+                    menu.replaceExistingItem(getStatusSlot(), NO_ENERGY_ITEM);
+                }
             }
-        } else if (onProcess(b, menu)) {
-            removeCharge(menu.getLocation(), energyPerTick);
+            else if (onProcess(b, menu)) {
+                removeCharge(menu.getLocation(), energyPerTick);
+            }
         }
     }
 

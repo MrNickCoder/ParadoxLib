@@ -18,10 +18,12 @@ import org.bukkit.inventory.ItemStack;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import javax.annotation.ParametersAreNonnullByDefault;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@ParametersAreNonnullByDefault
 public abstract class ParadoxCraftingBlock extends ParadoxInventoryBlock {
 
     private final List<ParadoxCraftingBlockRecipe> recipes = new ArrayList<>();

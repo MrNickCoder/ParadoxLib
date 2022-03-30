@@ -1,5 +1,6 @@
 package com.ncoder.paradoxlib.blocks;
 
+import com.ncoder.paradoxlib.common.Scheduler;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
@@ -35,15 +36,12 @@ public abstract class ParadoxTickingBlock extends ParadoxInventoryBlock {
                     public void tick(Block b, SlimefunItem item, Config data) {
                         BlockMenu menu = BlockStorage.getInventory(b);
                         if (menu != null) ParadoxTickingBlock.this.onTick(b, menu);
-                        else ParadoxTickingBlock.this.onTickNonMenu(b);
                     }
                 }
         );
     }
 
     protected abstract void onTick(Block b, BlockMenu menu);
-
-    protected void onTickNonMenu(Block b) {  }
 
     protected boolean synchronous() { return false; }
 }

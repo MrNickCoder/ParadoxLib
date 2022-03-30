@@ -62,7 +62,6 @@ public abstract class ParadoxInventoryBlock extends SlimefunItem {
                     public void onPlayerBreak(BlockBreakEvent e, ItemStack item, List<ItemStack> drops) {
                         BlockMenu menu = BlockStorage.getInventory(e.getBlock());
                         if (menu != null) onBreak(e, menu);
-                        else onBreakNonMenu(e);
                     }
                 },
                 new BlockPlaceHandler(false) {
@@ -104,8 +103,6 @@ public abstract class ParadoxInventoryBlock extends SlimefunItem {
         menu.dropItems(l, getInputSlots());
         menu.dropItems(l, getOutputSlots());
     }
-
-    protected void onBreakNonMenu(BlockBreakEvent e) {  }
 
     protected void onPlace(BlockPlaceEvent e, Block b) {  }
 }
